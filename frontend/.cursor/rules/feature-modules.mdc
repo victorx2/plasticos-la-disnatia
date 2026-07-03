@@ -1,0 +1,25 @@
+---
+description: Patrón de módulos en src/features
+globs: src/features/**/*
+alwaysApply: false
+---
+
+# Feature modules
+
+```
+features/<modulo>/
+  types.ts, api.ts, labels.ts, hooks/, pages/
+```
+
+## api.ts
+
+```ts
+import { getJson, postJson, patchJson } from "@/shared/api/client"
+import type { PaginatedResponse } from "@/shared/types/pagination"
+```
+
+Rutas y payloads deben coincidir con el API Python — ver `docs/API.md`.
+
+## labels.ts
+
+Todos los textos UI en español.

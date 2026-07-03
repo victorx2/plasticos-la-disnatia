@@ -1,0 +1,41 @@
+---
+description: Sprint producción — extrusión registro, despacho, reportes
+globs: src/features/production/**,src/features/dispatch/**,src/features/reports/**
+alwaysApply: false
+---
+
+# Próximo sprint — Producción / Despacho / Reportes
+
+Leer **antes de codificar**:
+
+- `docs/HANDOFF-NEXT-SPRINT.md` — contexto y prioridades
+- `docs/EXTRUSION-REGISTER.md` — **prioridad 1**
+- `docs/DESPACHO.md` — prioridad 2
+- `docs/REPORTES.md` — prioridad 3
+
+## Reglas
+
+- **Solo frontend** — sin Laravel/PHP/backend en este repo
+- API Python externo — stub en `api.ts` + documentar en `docs/API.md`
+- Español en `labels.ts`
+- Patrón: `types.ts`, `api.ts`, `labels.ts`, `hooks/`, `pages/`
+- Formularios con líneas dinámicas → copiar `features/nroc-orders/`
+- Registrar rutas en `router.tsx` + `menu.ts` + permisos si aplica
+- `npm run build` al terminar
+- No commitear salvo petición explícita
+
+## Extrusión registro (P1)
+
+- Ruta: `/extrusion/registro`
+- 7 micrajes fijos + kg por bobina; total kg en vivo
+- Trabajo en planta en etapa extrusión; turno + tiempo en cabecera
+- MVP sin API: validar + toast; opcional sessionStorage
+
+## Despacho (P2)
+
+- Reemplazar placeholder `/despacho`
+- Wizard: bobinas → paletas → nota/hablador (HTML preview MVP)
+
+## Reportes (P3)
+
+- Menú `/reportes` con 3 tabs (tiempos, consumo total, consumo por orden)

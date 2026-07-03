@@ -1,0 +1,38 @@
+export const DASHBOARD_LABELS = {
+  pageTitle: "Resumen",
+  pageSubtitle:
+    "Vista de producción, inventario, solicitudes y alertas. Los valores se actualizan al recargar la página.",
+  sitePrefix: "Plásticos La Dinastía",
+  loading: "Cargando…",
+  loadError: "No se pudo cargar el resumen.",
+  noData: "Sin datos. Compruebe la conexión con el servidor.",
+  monthAccumulated: (label: string) => `Acumulado de ${label}.`,
+  monthCurrent: "Acumulado del mes en curso.",
+  sections: {
+    production: "Producción del mes",
+    inventory: "Inventario hoy",
+    action: "Pendientes de acción",
+  },
+  badges: {
+    review: "Revisar",
+    attention: "Atención",
+  },
+  kpis: {
+    mixingProduction: "Material producida — Mezcla",
+    mixingHint: "Kg de mezcla registrados en el mes.",
+    extrusionProduction: "Material producida — Extrusión",
+    extrusionHint: "Kg de bobina extruida en el mes.",
+    alertsUnread: "Alertas sin leer",
+    alertsHint: "Pendiente de atención del equipo.",
+    movementsToday: "Movimientos hoy en inventario",
+    movementsHint: "Entradas, salidas y ajustes del día.",
+    materialRequests: "Solicitudes de insumos pendientes",
+    materialRequestsHint: "Pendiente o con entrega parcial en inventario.",
+    returnsPending: "Devoluciones pendientes",
+    returnsHint: "En espera de aceptación en almacén.",
+    rejectedBobinas: "Bobinas rechazadas del mes",
+    rejectedBobinasHint: "Registradas por devolución a inventario rechazado.",
+    lowStock: "Materiales bajo mínimo",
+    lowStockHint: "Referencias por debajo del stock mínimo.",
+  },
+} as const

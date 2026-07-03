@@ -1,0 +1,27 @@
+---
+description: Contexto global — Axones Acarigua frontend (solo UI)
+alwaysApply: true
+---
+
+# Axones Acarigua — frontend
+
+**Solo frontend React.** API en **Python externo** (otro proyecto). Sin Laravel, sin backend en este repo.
+
+## Convenciones
+
+- Módulos en `src/features/` (types, api, labels, hooks, pages)
+- Listados: `shared/catalog` + `usePaginatedList` + `PaginatedResponse`
+- Contrato API: `docs/API.md`
+- Registrar router + menu + permissions al añadir módulos
+- `npm run build` tras cambios significativos
+- No commitear salvo petición explícita
+
+## Dev
+
+`:5174` + proxy `/api` → API Python (`VITE_DEV_API_URL`, default :8000).
+
+## Docs
+
+`AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/MODULES.md`, `docs/API.md`
+
+**Próximo trabajo:** `docs/HANDOFF-NEXT-SPRINT.md` (+ `EXTRUSION-REGISTER.md`, `DESPACHO.md`, `REPORTES.md`)

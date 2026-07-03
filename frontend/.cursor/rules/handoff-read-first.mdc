@@ -1,0 +1,15 @@
+---
+description: Leer handoff antes de implementar módulos nuevos de producción
+alwaysApply: true
+---
+
+# Handoff — trabajo pendiente
+
+Si el usuario pide **extrusión registro**, **despacho**, **reportes**, **bobinas**, **micrajes** o **paletas**:
+
+1. Leer `docs/HANDOFF-NEXT-SPRINT.md` y `docs/GLOSARIO.md`
+2. Leer la spec del módulo (`docs/EXTRUSION-REGISTER.md`, `DESPACHO.md`, o `REPORTES.md`)
+3. Solo frontend — API Python en otro proyecto
+4. Seguir patrones en `docs/ADDING-A-MODULE.md`
+
+Estado actual: `/extrusion` es hub KPI; registro **no implementado**. `/despacho` es placeholder. Reportes **no existen** en menú.

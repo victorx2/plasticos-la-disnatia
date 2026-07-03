@@ -1,0 +1,26 @@
+---
+description: Backend Axones Acarigua — solo API Python
+alwaysApply: true
+---
+
+# Backend Acarigua
+
+**Solo API Python.** Frontend en `../frontend/`. Sin React, sin PHP.
+
+## Convenciones
+
+- Módulos en `modules/` espejo de `frontend/src/features/`
+- Por módulo: `types.py`, `api.py`, `labels.py`, `hooks/`, `pages/`, `models/`
+- Contrato: `docs/API.md` + `frontend/docs/API.md`
+- Migraciones: `migrations/` (Alembic)
+- Seeders: `seeders/`
+- MySQL + phpMyAdmin para tablas
+
+## No mezclar
+
+- Lógica de BD → `models/` + `hooks/`
+- Rutas HTTP → `api.py`
+- JSON schemas → `types.py`
+- Nunca importar código del frontend
+
+Leer `AGENTS.md` y `docs/MODULES.md` antes de implementar.

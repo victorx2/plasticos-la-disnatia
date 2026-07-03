@@ -1,0 +1,46 @@
+---
+description: Convenciones UI para páginas React
+globs: src/**/*.tsx
+alwaysApply: false
+---
+
+# Páginas y componentes
+
+## Layout
+
+- Envolver en `PageShell` (título, subtítulo, icono Lucide, acción opcional)
+- Formularios: `LabeledField`, inputs nativos o `shared/ui/button`, `shared/ui/input`
+- No usar `Textarea` de shadcn — usar `<textarea className="...">` como en otros forms
+
+## Tablas de catálogo
+
+```tsx
+<CatalogLoadingRows colSpan={8} />
+<CatalogEmptyRows colSpan={8}>
+  <CatalogEmptyState compact icon={SomeIcon} title="..." description="..." />
+</CatalogEmptyRows>
+```
+
+`catalogRowNumber(current_page, per_page, index)` para columna #.
+
+## Paginación
+
+```tsx
+<CatalogListPagination
+  rows={rows}
+  loading={loading}
+  perPage={perPage}
+  onPerPageChange={setPerPage}
+  onPageChange={setPage}
+/>
+```
+
+## Formularios
+
+- Edición: `?id=` en URL (`useSearchParams`)
+- Validación en hook; toasts con `sonner`
+- Navegar al listado tras guardar exitoso
+
+## Estilo
+
+Tailwind + clases de `shared/catalog/classes.ts`. Mantener consistencia con módulos existentes (`purchase-orders`, `nroc-orders`).

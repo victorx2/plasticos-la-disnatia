@@ -1,0 +1,17 @@
+---
+description: Axones Acarigua — código en frontend/
+alwaysApply: true
+---
+
+# Axones Acarigua
+
+Monorepo separado:
+
+- **Frontend (React):** `frontend/`
+- **Backend (API Python):** `backend/`
+
+No mezclar código entre carpetas. Contrato compartido: `frontend/docs/API.md`.
+
+Handoff frontend: `frontend/docs/HANDOFF-NEXT-SPRINT.md`
+
+Reglas: `frontend/.cursor/rules/` y `backend/.cursor/rules/`
