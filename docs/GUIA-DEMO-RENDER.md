@@ -12,7 +12,7 @@ Tiempo estimado: **15–25 minutos** la primera vez.
 | | |
 |--|--|
 | **URL** | `https://plasticos-la-disnatia.onrender.com` (o similar) |
-| **Login** | ver sección «Usuarios demo» |
+| **Login** | **Auto**: entran directo al Resumen (sin pantella de login en la demo) |
 | **Costo** | Plan free de Render |
 
 **Limitaciones del free:**
@@ -88,7 +88,11 @@ Si falla el build: **Logs** → copia el error y revísalo (a menudo falta push 
 
 ---
 
-## 3. Usuarios demo
+## 3. Acceso demo (sin login)
+
+La imagen demo se compila con `VITE_DEMO_AUTO_LOGIN=true`: al abrir la URL, la app inicia sesión sola como administrador y va a **Resumen**.
+
+Usuarios seed (si algún día desactivas el auto-login):
 
 | Usuario | Contraseña | Rol |
 |---------|------------|-----|
@@ -111,12 +115,10 @@ Hay un cliente y producto demo sembrados al arrancar.
 Texto corto para WhatsApp:
 
 ```
-Hola — demo del sistema Axones Acarigua (planta):
-URL: https://TU-URL.onrender.com
-Usuario: admin
-Clave: password
+Hola — demo del sistema Plásticos La Dinastía (planta):
+https://plasticos-la-disnatia.onrender.com
 
-Si tarda ~1 min la primera vez, es normal (servidor gratis).
+Entra directo (sin usuario/clave). Si tarda ~1 min la primera vez, es normal (servidor gratis).
 ```
 
 ---

@@ -50,6 +50,7 @@ import { PurchaseOrderFormPage } from "@/features/purchase-orders/pages/Purchase
 import { PurchaseOrdersListPage } from "@/features/purchase-orders/pages/PurchaseOrdersListPage"
 import { LoginPage } from "@/features/auth/pages/LoginPage"
 import { RequestPasswordResetPage } from "@/features/auth/pages/RequestPasswordResetPage"
+import { isDemoAutoLoginEnabled } from "@/shared/auth/demoAutoLogin"
 import { isAuthenticated } from "@/shared/auth/session"
 
 const NrocOrdersListPage = lazy(() =>
@@ -61,7 +62,7 @@ const NrocOrdersListPage = lazy(() =>
 function RootRedirect() {
   return (
     <Navigate
-      to={isAuthenticated() ? "/resumen" : "/auth/basic/login"}
+      to={isAuthenticated() || isDemoAutoLoginEnabled() ? "/resumen" : "/auth/basic/login"}
       replace
     />
   )
