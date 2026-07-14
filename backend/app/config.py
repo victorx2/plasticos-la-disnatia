@@ -14,7 +14,15 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:5174,http://127.0.0.1:5174"
 
     def validate_production(self) -> None:
-        if self.environment.lower() != "production":
+        env = self.environment.lower()
+        if env == "demo":
+            # Demo cloud (Render): SQLite permitido; JWT débil solo en desarrollo local.
+            if self.jwt_secret == "dev-change-me" or len(self.jwt_secret) < 32:
+                raise RuntimeError(
+                    "JWT_SECRET debe ser una cadena segura (≥32 caracteres) en ENVIRONMENT=demo"
+                )
+            return
+        if env != "production":
             return
         if self.jwt_secret == "dev-change-me" or len(self.jwt_secret) < 32:
             raise RuntimeError(

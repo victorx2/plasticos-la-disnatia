@@ -66,10 +66,12 @@ async def validation_exception_handler(_: Request, exc: RequestValidationError):
     return JSONResponse(status_code=422, content={"message": "Datos inválidos", "errors": exc.errors()})
 
 origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
+# Starlette no permite allow_origins=["*"] junto con allow_credentials=True
+_cors_credentials = origins != ["*"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=origins if origins else ["http://localhost:5174"],
+    allow_credentials=_cors_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )

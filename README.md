@@ -25,6 +25,10 @@ VITE_DEV_API_URL=http://127.0.0.1:8000
 VITE_API_BASE_URL=http://127.0.0.1:8000/api
 ```
 
+## Demo gratis (Render)
+
+Front + back en una URL pública (plan free): [docs/GUIA-DEMO-RENDER.md](./docs/GUIA-DEMO-RENDER.md)
+
 ## Documentación
 
 | Archivo | Contenido |
@@ -35,6 +39,7 @@ VITE_API_BASE_URL=http://127.0.0.1:8000/api
 | [backend/AGENTS.md](./backend/AGENTS.md) | Contexto Cursor — backend |
 | [backend/docs/MODULES.md](./backend/docs/MODULES.md) | Módulos por menú de la app |
 | [frontend/docs/API.md](./frontend/docs/API.md) | Contrato REST (compartido) |
+| [docs/GUIA-DEMO-RENDER.md](./docs/GUIA-DEMO-RENDER.md) | Subir demo gratis a Render |
 
 ## Cursor
 

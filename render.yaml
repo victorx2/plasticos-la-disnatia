@@ -1,0 +1,27 @@
+# Blueprint Render — demo gratis (frontend + backend en un solo servicio)
+# Docs: https://render.com/docs/blueprint-spec
+#
+# En el dashboard: New → Blueprint → seleccionar este repo.
+# Guía: docs/GUIA-DEMO-RENDER.md
+
+services:
+  - type: web
+    name: axones-acarigua-demo
+    runtime: docker
+    plan: free
+    dockerfilePath: ./deploy/docker/demo.Dockerfile
+    dockerContext: .
+    healthCheckPath: /up
+    envVars:
+      - key: ENVIRONMENT
+        value: demo
+      - key: DATABASE_URL
+        value: sqlite:////tmp/axones_demo.db
+      - key: API_REQUIRE_AUTH
+        value: "true"
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRE_MINUTES
+        value: "480"
