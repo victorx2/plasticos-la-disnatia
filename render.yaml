@@ -6,7 +6,7 @@
 
 services:
   - type: web
-    name: axones-acarigua-demo
+    name: plasticos-la-disnatia
     runtime: docker
     plan: free
     dockerfilePath: ./deploy/docker/demo.Dockerfile

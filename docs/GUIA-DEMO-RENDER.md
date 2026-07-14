@@ -11,7 +11,7 @@ Tiempo estimado: **15–25 minutos** la primera vez.
 
 | | |
 |--|--|
-| **URL** | `https://axones-acarigua-demo.onrender.com` (o similar) |
+| **URL** | `https://plasticos-la-disnatia.onrender.com` (o similar) |
 | **Login** | ver sección «Usuarios demo» |
 | **Costo** | Plan free de Render |
 
@@ -47,7 +47,7 @@ git push origin main
 1. Entra a [Render Dashboard](https://dashboard.render.com).
 2. **New** → **Blueprint**.
 3. Conecta el repo de GitHub (el de este proyecto).
-4. Render lee `render.yaml` → confirma el servicio `axones-acarigua-demo`.
+4. Render lee `render.yaml` → confirma el servicio `plasticos-la-disnatia`.
 5. **Apply** / crear.
 
 ### Opción B — Web Service manual
