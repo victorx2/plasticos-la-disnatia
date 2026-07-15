@@ -9,9 +9,9 @@ COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
 COPY frontend/ .
 ARG VITE_API_BASE_URL=/api
-ARG VITE_DEMO_AUTO_LOGIN=true
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
-ENV VITE_DEMO_AUTO_LOGIN=$VITE_DEMO_AUTO_LOGIN
+# Forzar en build (sin ARG vacío desde Render que lo apague)
+ENV VITE_API_BASE_URL=/api
+ENV VITE_DEMO_AUTO_LOGIN=true
 RUN npm run build
 
 # --- Runtime: API + nginx ---

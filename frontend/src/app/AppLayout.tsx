@@ -14,16 +14,24 @@ export function RequireAuth({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     let cancelled = false
+    let timer: ReturnType<typeof setTimeout> | undefined
 
     if (demo) {
-      // Siempre renovar token en demo (SQLite/JWT se reinician al dormir Render).
-      void ensureDemoAuthSession({ force: true }).then((ok) => {
-        if (cancelled) return
-        if (ok) setReady(true)
-        else setGoLogin(true)
-      })
+      const attempt = () => {
+        void ensureDemoAuthSession({ force: true }).then((ok) => {
+          if (cancelled) return
+          if (ok) {
+            setReady(true)
+            return
+          }
+          // No mandar a /login: reintentar mientras despierta el free tier
+          timer = setTimeout(attempt, 2000)
+        })
+      }
+      attempt()
       return () => {
         cancelled = true
+        if (timer) clearTimeout(timer)
       }
     }
 

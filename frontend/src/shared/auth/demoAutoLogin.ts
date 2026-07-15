@@ -3,7 +3,12 @@ import { clearAuthSession, isAuthenticated, setAuthSession } from "@/shared/auth
 
 /** Demo cloud (Render): entrar sin pantella de login. */
 export function isDemoAutoLoginEnabled(): boolean {
-  return import.meta.env.VITE_DEMO_AUTO_LOGIN === "true"
+  if (import.meta.env.VITE_DEMO_AUTO_LOGIN === "true") return true
+  // Respaldo si el build en la nube no bakeó la env
+  if (typeof window !== "undefined" && /\.onrender\.com$/i.test(window.location.hostname)) {
+    return true
+  }
+  return false
 }
 
 const DEMO_LOGIN = "admin"
