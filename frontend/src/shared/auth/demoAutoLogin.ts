@@ -1,5 +1,5 @@
 import { login } from "@/features/auth/api"
-import { isAuthenticated, setAuthSession } from "@/shared/auth/session"
+import { clearAuthSession, isAuthenticated, setAuthSession } from "@/shared/auth/session"
 
 /** Demo cloud (Render): entrar sin pantella de login. */
 export function isDemoAutoLoginEnabled(): boolean {
@@ -11,14 +11,14 @@ const DEMO_PASSWORD = "password"
 
 let inflight: Promise<boolean> | null = null
 
-/** Si no hay sesión y el auto-login está activo, inicia sesión como admin demo. */
-export async function ensureDemoAuthSession(): Promise<boolean> {
-  if (isAuthenticated()) return true
+/** Fuerza un login demo nuevo (sirve tras sleep de Render / JWT inválido). */
+export async function refreshDemoAuthSession(): Promise<boolean> {
   if (!isDemoAutoLoginEnabled()) return false
 
   if (!inflight) {
     inflight = (async () => {
       try {
+        clearAuthSession()
         const data = await login({ login: DEMO_LOGIN, password: DEMO_PASSWORD })
         setAuthSession(data.token, data.user)
         return true
@@ -31,4 +31,14 @@ export async function ensureDemoAuthSession(): Promise<boolean> {
   }
 
   return inflight
+}
+
+/**
+ * Garantiza sesión demo.
+ * Con `force`, re-loguea aunque haya token viejo en localStorage.
+ */
+export async function ensureDemoAuthSession(options?: { force?: boolean }): Promise<boolean> {
+  if (!isDemoAutoLoginEnabled()) return isAuthenticated()
+  if (!options?.force && isAuthenticated()) return true
+  return refreshDemoAuthSession()
 }

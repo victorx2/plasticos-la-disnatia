@@ -8,31 +8,35 @@ import { isAuthenticated } from "@/shared/auth/session"
 import { TooltipProvider } from "@/shared/ui/tooltip"
 
 export function RequireAuth({ children }: { children: React.ReactNode }) {
-  const [ready, setReady] = useState(() => isAuthenticated())
+  const demo = isDemoAutoLoginEnabled()
+  const [ready, setReady] = useState(() => !demo && isAuthenticated())
   const [goLogin, setGoLogin] = useState(false)
 
   useEffect(() => {
+    let cancelled = false
+
+    if (demo) {
+      // Siempre renovar token en demo (SQLite/JWT se reinician al dormir Render).
+      void ensureDemoAuthSession({ force: true }).then((ok) => {
+        if (cancelled) return
+        if (ok) setReady(true)
+        else setGoLogin(true)
+      })
+      return () => {
+        cancelled = true
+      }
+    }
+
     if (isAuthenticated()) {
       setReady(true)
       return
     }
 
-    if (!isDemoAutoLoginEnabled()) {
-      setGoLogin(true)
-      return
-    }
-
-    let cancelled = false
-    void ensureDemoAuthSession().then((ok) => {
-      if (cancelled) return
-      if (ok) setReady(true)
-      else setGoLogin(true)
-    })
-
+    setGoLogin(true)
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [demo])
 
   if (ready) return children
   if (goLogin) return <Navigate to="/auth/basic/login" replace />

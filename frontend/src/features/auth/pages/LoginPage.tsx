@@ -1,26 +1,21 @@
 import { useEffect, useState } from "react"
 import { Navigate } from "react-router-dom"
 
+import { PageLoading } from "@/app/PageLoading"
 import { AuthPageShell } from "@/features/auth/components/AuthPageShell"
 import { LoginForm } from "@/features/auth/components/LoginForm"
-import { PageLoading } from "@/app/PageLoading"
 import { ensureDemoAuthSession, isDemoAutoLoginEnabled } from "@/shared/auth/demoAutoLogin"
-import { isAuthenticated } from "@/shared/auth/session"
 
 export function LoginPage() {
   const demo = isDemoAutoLoginEnabled()
-  const [demoReady, setDemoReady] = useState(() => isAuthenticated())
+  const [demoReady, setDemoReady] = useState(false)
   const [demoFailed, setDemoFailed] = useState(false)
 
   useEffect(() => {
     if (!demo) return
-    if (isAuthenticated()) {
-      setDemoReady(true)
-      return
-    }
 
     let cancelled = false
-    void ensureDemoAuthSession().then((ok) => {
+    void ensureDemoAuthSession({ force: true }).then((ok) => {
       if (cancelled) return
       if (ok) setDemoReady(true)
       else setDemoFailed(true)
