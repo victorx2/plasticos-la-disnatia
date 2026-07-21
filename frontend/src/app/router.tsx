@@ -60,12 +60,11 @@ const NrocOrdersListPage = lazy(() =>
 )
 
 function RootRedirect() {
-  return (
-    <Navigate
-      to={isAuthenticated() || isDemoAutoLoginEnabled() ? "/resumen" : "/auth/basic/login"}
-      replace
-    />
-  )
+  // En demo (Render) siempre ir al resumen; el RequireAuth hace auto-login.
+  if (isDemoAutoLoginEnabled() || isAuthenticated()) {
+    return <Navigate to="/resumen" replace />
+  }
+  return <Navigate to="/auth/basic/login" replace />
 }
 
 function withPermission(element: ReactNode, permissionId?: string) {

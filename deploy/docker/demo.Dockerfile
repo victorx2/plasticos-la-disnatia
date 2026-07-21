@@ -1,6 +1,7 @@
 # Demo all-in-one: frontend (nginx) + backend (uvicorn) + SQLite
 # Build context: raíz del monorepo
 #   docker build -f deploy/docker/demo.Dockerfile -t axones-demo .
+# Redeploy bump: 2026-07-21-no-login
 
 # --- Frontend build ---
 FROM node:20-alpine AS frontend

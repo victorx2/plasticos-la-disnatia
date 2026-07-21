@@ -7,8 +7,8 @@ import { LoginForm } from "@/features/auth/components/LoginForm"
 import { ensureDemoAuthSession, isDemoAutoLoginEnabled } from "@/shared/auth/demoAutoLogin"
 
 /**
- * En demo (Render) nunca se muestra el formulario:
- * reintenta auto-login hasta entrar al Resumen.
+ * En demo (Render) NUNCA se renderiza el formulario de login.
+ * Solo loading → auto-login → /resumen.
  */
 export function LoginPage() {
   const demo = isDemoAutoLoginEnabled()
@@ -27,7 +27,7 @@ export function LoginPage() {
           setReady(true)
           return
         }
-        timer = setTimeout(attempt, 2000)
+        timer = setTimeout(attempt, 1500)
       })
     }
 
@@ -39,6 +39,7 @@ export function LoginPage() {
     }
   }, [demo])
 
+  // En Render / demo: jamás LoginForm
   if (demo) {
     if (ready) return <Navigate to="/resumen" replace />
     return <PageLoading />
